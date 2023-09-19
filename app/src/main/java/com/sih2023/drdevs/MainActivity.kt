@@ -52,11 +52,12 @@ fun GreetingPreview() {
     }
 }
 
+
 @Composable
 fun ComposeDemoApp() {
-    val singapore = LatLng(51.52061810406676, -0.12635325270312533)
+    val singapore = LatLng(26.610833, 80.281583)
     val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(singapore, 20f)
+        position = CameraPosition.fromLatLngZoom(singapore, 10f)
     }
     GoogleMap(
         modifier = Modifier.fillMaxSize(),

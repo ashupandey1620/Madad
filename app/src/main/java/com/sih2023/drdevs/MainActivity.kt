@@ -10,12 +10,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
+import com.google.maps.android.compose.rememberMarkerState
 import com.sih2023.drdevs.ui.theme.DRDevsTheme
 
 class MainActivity : ComponentActivity() {
@@ -27,7 +29,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize() ,
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ComposeDemoApp()
+                   MapMarkersMovable()
                 }
             }
         }
@@ -51,9 +53,8 @@ fun GreetingPreview() {
 
     }
 }
-
 @Composable
-fun ComposeDemoApp() {
+fun LocationMark() {
     val singapore = LatLng(26.610833, 80.281583)
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(singapore, 10f)
@@ -70,3 +71,22 @@ fun ComposeDemoApp() {
     }
 }
 
+
+@Composable
+fun MapMarkersMovable() {
+    val singapore = LatLng(26.450559439015883, 80.1927723804719)
+    val cameraPositionState = rememberCameraPositionState {
+        position = CameraPosition.fromLatLngZoom (singapore, 10f)
+    }
+    GoogleMap(
+         Modifier.fillMaxSize(),
+        cameraPositionState = cameraPositionState
+    ) {
+        Marker (
+            state = rememberMarkerState (position = singapore),
+            draggable = true,
+            title="Marker 1",
+            snippet = "Marker in Singapore",
+            icon = BitmapDescriptorFactory.defaultMarker (BitmapDescriptorFactory.HUE_ORANGE))
+    }
+}

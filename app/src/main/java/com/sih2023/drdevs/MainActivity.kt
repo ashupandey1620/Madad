@@ -42,8 +42,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize() ,
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    MapMarkersMovable()
 
-                    ComposeMapControllingCamera()
+                   // ComposeMapControllingCamera()
                 }
             }
         }
@@ -54,25 +55,32 @@ class MainActivity : ComponentActivity() {
 
 //      26.449347064508466, 80.19205235150231   (PSIT Cordinates AA block)
 //      26.397074049510646, 80.31874031749705   (Home Cordinates)
+//      (Naubasta Cordinates)
+//      26.449347064508466, 80.19205235150231   (PSIT CORDINATES)
+
+
+//
+//@Composable
+//fun Greeting(name: String , modifier: Modifier = Modifier) {
+//    Text(
+//        text = "Hello $name!",
+//        modifier = modifier
+//    )
+//}
+//
 
 
 
-@Composable
-fun Greeting(name: String , modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun GreetingPreview() {
+//    DRDevsTheme {
+//        Greeting("Android")
+//
+//    }
+//}
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    DRDevsTheme {
-        Greeting("Android")
 
-    }
-}
 @Composable
 fun LocationMark() {
     val college = LatLng(26.449347064508466, 80.19205235150231)
@@ -94,19 +102,19 @@ fun LocationMark() {
 
 @Composable
 fun MapMarkersMovable() {
-    val singapore = LatLng(26.449347064508466, 80.19205235150231)
+    val college = LatLng(26.449347064508466, 80.19205235150231)
     val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom (singapore, 10f)
+        position = CameraPosition.fromLatLngZoom (college, 10f)
     }
     GoogleMap(
          Modifier.fillMaxSize(),
         cameraPositionState = cameraPositionState
     ) {
         Marker (
-            state = rememberMarkerState (position = singapore),
+            state = rememberMarkerState (position = college),
             draggable = true,
             title="Marker 1",
-            snippet = "Marker in Singapore",
+            snippet = "Marker in PSIT COllege",
             icon = BitmapDescriptorFactory.defaultMarker (BitmapDescriptorFactory.HUE_RED))
     }
 }
@@ -153,9 +161,9 @@ fun ComposeMapPropertiesDemo() {
 
 @Composable
 fun ComposeMapControllingCamera() {
-    val singapore = LatLng(26.449347064508466, 80.19205235150231)
+    val college = LatLng(26.449347064508466, 80.19205235150231)
     val cameraPositionState: CameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(singapore, 11f)
+        position = CameraPosition.fromLatLngZoom(college, 11f)
     }
     Box(Modifier.fillMaxSize()) {
         GoogleMap(cameraPositionState = cameraPositionState){

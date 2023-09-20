@@ -42,14 +42,19 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize() ,
                     color = MaterialTheme.colorScheme.background
                 ) {
-                  // MapMarkersMovable()
-//                    ComposeMapPropertiesDemo()
+
                     ComposeMapControllingCamera()
                 }
             }
         }
     }
 }
+
+
+
+//      26.449347064508466, 80.19205235150231   (PSIT Cordinates AA block)
+//      26.397074049510646, 80.31874031749705   (Home Cordinates)
+
 
 
 @Composable
@@ -70,18 +75,18 @@ fun GreetingPreview() {
 }
 @Composable
 fun LocationMark() {
-    val singapore = LatLng(26.610833, 80.281583)
+    val college = LatLng(26.449347064508466, 80.19205235150231)
     val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(singapore, 10f)
+        position = CameraPosition.fromLatLngZoom(college, 10f)
     }
     GoogleMap(
         modifier = Modifier.fillMaxSize(),
         cameraPositionState = cameraPositionState
     ) {
         Marker(
-            state = MarkerState(position = singapore),
-            title = "London",
-            snippet = "Marker in Big Ben"
+            state = MarkerState(position = college),
+            title = "PSIT College",
+            snippet = "Marker in AA block"
         )
     }
 }
@@ -89,7 +94,7 @@ fun LocationMark() {
 
 @Composable
 fun MapMarkersMovable() {
-    val singapore = LatLng(26.450559439015883, 80.1927723804719)
+    val singapore = LatLng(26.449347064508466, 80.19205235150231)
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom (singapore, 10f)
     }
@@ -148,7 +153,7 @@ fun ComposeMapPropertiesDemo() {
 
 @Composable
 fun ComposeMapControllingCamera() {
-    val singapore = LatLng(1.35, 103.87)
+    val singapore = LatLng(26.449347064508466, 80.19205235150231)
     val cameraPositionState: CameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(singapore, 11f)
     }

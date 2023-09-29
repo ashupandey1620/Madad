@@ -101,12 +101,13 @@ class MainActivity : ComponentActivity() {
                     //ComposeMapControllingCamera()
 
                     //Customizing a marker icon
-                    // ComposeMapMapMarker()
+                   //  ComposeMapMapMarker()
 
                     //Customizing a marker's info window
                     // ComposeMapCustomizingMarker()
 
                     // ComposeMapMapPolyline()
+                    //directly sketches a line from a location to other location........can be used for marking a area.
                     // ComposeMapDrawTrack()
                     // no api key required //to Draw Track on Google Maps
 
@@ -135,8 +136,8 @@ fun ComposeMapDemo() {
     ) {
         Marker(
             state = MarkerState(position = college),
-            title = "Singapore",
-            snippet = "Marker in Singapore"
+            title = "PSIT",
+            snippet = "Marker in College"
         )
 
     }
@@ -158,7 +159,7 @@ fun ComposeMapDemoMarkers() {
             state = rememberMarkerState(position = college),
             draggable = true,
             title = "Marker 1",
-            snippet = "Marker in Singapore",
+            snippet = "Marker in College",
             icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)
         )
     }
@@ -243,7 +244,7 @@ fun ComposeDemoApp3() {
 
 
                     Image(
-                        painter = painterResource(id = R.drawable.locationpin),
+                        painter = painterResource(id = R.drawable.mapmarker),
                         contentDescription = null,
                         contentScale = ContentScale.Fit,
                         modifier = Modifier
@@ -329,7 +330,7 @@ fun ComposeMapCustomizingMarker() {
                     ) {
 
                         Image(
-                            painter = painterResource(id = R.drawable.map),
+                            painter = painterResource(id = R.drawable.mapmarker),
                             contentDescription = null,
                             contentScale = ContentScale.Fit,
                             modifier = Modifier
@@ -420,37 +421,37 @@ fun ComposeMapMapMarker() {
                 position = college,
                 title = "Pranveer Singh Institute of Technology",
                 context = LocalContext.current,
-                iconResourceId = R.drawable.locationpin
+                iconResourceId = R.drawable.school
             )
             MapMarker(
                 position = airforceHospital,
                 title = "Airforce Hospital",
                 context = LocalContext.current,
-                iconResourceId = R.drawable.locationpin
+                iconResourceId = R.drawable.hospital
             )
             MapMarker(
                 position = regencyHospital,
                 title = "Regency Hospital",
                 context = LocalContext.current,
-                iconResourceId = R.drawable.locationpin
+                iconResourceId = R.drawable.hospital
             )
             MapMarker(
                 position = thanaKotwali,
                 title = "Police Station Kotwali",
                 context = LocalContext.current,
-                iconResourceId = R.drawable.locationpin
+                iconResourceId = R.drawable.policestation
             )
             MapMarker(
                 position = fsKidwaiNagar,
                 title = "FireStation Kidwai Nagar",
                 context = LocalContext.current,
-                iconResourceId = R.drawable.locationpin
+                iconResourceId = R.drawable.policestation
             )
             MapMarker(
                 position = home,
                 title = "Home",
                 context = LocalContext.current,
-                iconResourceId = R.drawable.locationpin
+                iconResourceId = R.drawable.home
             )
         }
     }
@@ -570,14 +571,14 @@ private fun drawTrack(source: String, destination: String, context: Context) {
 
 @Composable
 fun ComposeMapMapPolyline() {
-    val singapore = LatLng(44.811058, 20.4617586)
+    val home = LatLng(26.397074049510646, 80.31874031749705)
     val cameraPositionState: CameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(singapore, 11f)
+        position = CameraPosition.fromLatLngZoom(home, 11f)
     }
     Box(Modifier.fillMaxSize()) {
         GoogleMap(cameraPositionState = cameraPositionState){
             MapMarker(
-                position = singapore,
+                position = home,
                 title = "Your Title",
                 context = LocalContext.current,
                 iconResourceId = R.drawable.locationpin
@@ -585,17 +586,25 @@ fun ComposeMapMapPolyline() {
 
             Polyline(
                 points = listOf(
-                    LatLng(44.811058, 20.4617586),
-                    LatLng(44.811058, 20.4627586),
-                    LatLng(44.810058, 20.4627586),
-                    LatLng(44.809058, 20.4627586),
-                    LatLng(44.809058, 20.4617586)
+                    LatLng(26.449347064508466, 80.19205235150231),
+                    LatLng(26.446797873756378, 80.37556576499573),
+                    LatLng(26.477747032569674, 80.34354328730275),
+                    LatLng(26.474650246686668, 80.35161125843983),
+                    LatLng(26.442081636314562, 80.33221358039603)
                 )
-                ,color = Color.Magenta
+                ,color = Color.Blue
             )
         }
     }
 }
+
+//private val psitAA = LatLng(26.449347064508466, 80.19205235150231)
+//private val airforceHospital = LatLng(26.446797873756378, 80.37556576499573)
+//private val regencyHospital = LatLng(26.477747032569674, 80.34354328730275)
+//private val thanaKotwali = LatLng(26.474650246686668, 80.35161125843983)
+//private val fsKidwaiNagar = LatLng(26.442081636314562, 80.33221358039603)
+//private val home = LatLng(26.397074049510646, 80.31874031749705)
+
 
 @Composable
 fun LoginApplication(){

@@ -42,15 +42,21 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.rememberLottieComposition
 
 @Composable
 fun LoginPage(navController: NavController) {
+
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.loginjson))
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
             .background(
-                color = Color.Transparent,
+                color = Color.Transparent ,
             )
     ) {
 
@@ -64,44 +70,52 @@ fun LoginPage(navController: NavController) {
                 .align(Alignment.BottomCenter),
         ) {
 
-            Image(
-                painter = painterResource(id = R.drawable.logodrdevs),
-                contentDescription = null,
-                contentScale = ContentScale.Fit,
-                modifier = Modifier
-                    .height(180.dp)
-                    .fillMaxWidth(),
 
-                )
+
+
             Column(
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier
+                    .padding(16.dp)
                     .fillMaxWidth()
                     .verticalScroll(rememberScrollState())
                 ,
-
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
+                Image(
+                    painter = painterResource(id = R.drawable.logodrdevs),
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .height(70.dp)
+                        .fillMaxWidth(),
+
+                    )
+
+                LottieAnimation(
+                    modifier = Modifier.size(400.dp),
+                    composition = composition )
+
                 //.........................Spacer
-                Spacer(modifier = Modifier.height(50.dp))
+//                Spacer(modifier = Modifier.height(50.dp))
 
                 //.........................Text: title
                 androidx.compose.material3.Text(
-                    text = "Sign In",
+                    text = "Login",
                     textAlign = TextAlign.Center,
                     modifier = Modifier
-                        .padding(top = 130.dp)
+                        .padding(top = 15.dp)
                         .fillMaxWidth(),
                     style = MaterialTheme.typography.headlineSmall,
                     color = MaterialTheme.colorScheme.primary,
                 )
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(10.dp))
                 SimpleOutlinedTextFieldSample()
 
                 Spacer(modifier = Modifier.padding(3.dp))
                 SimpleOutlinedPasswordTextField()
 
-                val gradientColor = listOf(Color(0xFF484BF1), Color(0xFF673AB7))
+                val gradientColor = listOf(Color(0xFFFDEB71), Color(0xFFF8D800))
                 val cornerRadius = 16.dp
 
 
@@ -178,7 +192,7 @@ private fun GradientButton(
     androidx.compose.material3.Button(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 32.dp, end = 32.dp),
+            .padding(start = 32.dp , end = 32.dp),
         onClick = {
             //your code
         },
@@ -194,7 +208,7 @@ private fun GradientButton(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(
-                    brush = Brush.horizontalGradient(colors = gradientColors),
+                    brush = Brush.horizontalGradient(colors = gradientColors) ,
                     shape = roundedCornerShape
                 )
                 .clip(roundedCornerShape)
@@ -202,7 +216,7 @@ private fun GradientButton(
                     brush = Brush.linearGradient(colors = gradientColors),
                     shape = RoundedCornerShape(cornerRadius)
                 )*/
-                .padding(horizontal = 16.dp, vertical = 8.dp),
+                .padding(horizontal = 16.dp , vertical = 8.dp),
             contentAlignment = Alignment.Center
         ) {
             androidx.compose.material3.Text(
@@ -227,11 +241,11 @@ fun SimpleOutlinedTextFieldSample() {
         onValueChange = { text = it },
         shape = RoundedCornerShape(topEnd =12.dp, bottomStart =12.dp),
         label = {
-            Text("Name or Email Address",
+            Text("Mobile Number or Email Address",
                 color = MaterialTheme.colorScheme.primary,
                 style = MaterialTheme.typography.labelMedium,
             ) },
-        placeholder = { Text(text = "Name or Email Address") },
+        placeholder = { Text(text = "Mobile Number or Email Address") },
         keyboardOptions = KeyboardOptions(
             imeAction = ImeAction.Next,
             keyboardType = KeyboardType.Email
@@ -240,7 +254,7 @@ fun SimpleOutlinedTextFieldSample() {
             focusedBorderColor = MaterialTheme.colorScheme.primary,
             unfocusedBorderColor = MaterialTheme.colorScheme.primary),
         singleLine = true,
-        modifier = Modifier.fillMaxWidth(0.8f),
+        modifier = Modifier.fillMaxWidth(0.9f),
         keyboardActions = KeyboardActions(
             onDone = {
                 keyboardController?.hide()
@@ -286,7 +300,7 @@ fun SimpleOutlinedPasswordTextField() {
                 Icon(imageVector = visibilityIcon, contentDescription = description)
             }
         },
-        modifier = Modifier.fillMaxWidth(0.8f),
+        modifier = Modifier.fillMaxWidth(0.9f),
         keyboardActions = KeyboardActions(
             onDone = {
                 keyboardController?.hide()

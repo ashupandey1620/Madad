@@ -115,7 +115,7 @@ fun LoginPage(navController: NavController) {
                 Spacer(modifier = Modifier.padding(3.dp))
                 SimpleOutlinedPasswordTextField()
 
-                val gradientColor = listOf(Color(0xFFFDEB71), Color(0xFFF8D800))
+                val gradientColor = listOf(Color(0xFFFFC727), Color(0xFFFFC727))
                 val cornerRadius = 16.dp
 
 

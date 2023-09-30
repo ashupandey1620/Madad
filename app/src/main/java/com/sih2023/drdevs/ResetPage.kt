@@ -39,9 +39,14 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.rememberLottieComposition
 
 @Composable
 fun ResetPage(navController: NavController) {
+
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.resetjson))
 
     Box(
         modifier = Modifier
@@ -59,18 +64,18 @@ fun ResetPage(navController: NavController) {
                     color = MaterialTheme.colorScheme.onPrimary,
                     shape = RoundedCornerShape(25.dp, 5.dp, 25.dp, 5.dp)
                 )*/
-                .align(Alignment.BottomCenter),
+                .align(Alignment.TopCenter),
         ) {
 
-            Image(
-                painter = painterResource(id = R.drawable.logodrdevs),
-                contentDescription = null,
-                contentScale = ContentScale.Fit,
-                modifier = Modifier
-                    .height(180.dp)
-                    .fillMaxWidth(),
-
-                )
+//            Image(
+//                painter = painterResource(id = R.drawable.logodrdevs),
+//                contentDescription = null,
+//                contentScale = ContentScale.Fit,
+//                modifier = Modifier
+//                    .height(180.dp)
+//                    .fillMaxWidth(),
+//
+//                )
             Column(
                 modifier = Modifier.padding(16.dp)
                     .fillMaxWidth()
@@ -80,6 +85,20 @@ fun ResetPage(navController: NavController) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
+                Image(
+                    painter = painterResource(id = R.drawable.logodrdevs),
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .height(70.dp)
+                        .fillMaxWidth(),
+
+                    )
+
+                LottieAnimation(
+                    modifier = Modifier.size(350.dp),
+                    composition = composition )
+
                 //.........................Spacer
                 Spacer(modifier = Modifier.height(50.dp))
 
@@ -88,7 +107,7 @@ fun ResetPage(navController: NavController) {
                     text = "Reset Password",
                     textAlign = TextAlign.Center,
                     modifier = Modifier
-                        .padding(top = 130.dp)
+                        .padding(top = 15.dp)
                         .fillMaxWidth(),
                     style = MaterialTheme.typography.headlineSmall,
                     color = MaterialTheme.colorScheme.primary,
@@ -99,7 +118,7 @@ fun ResetPage(navController: NavController) {
                 ResetEmailID()
                 Spacer(modifier = Modifier.padding(3.dp))
 
-                val gradientColor = listOf(Color(0xFF484BF1), Color(0xFF673AB7))
+                val gradientColor = listOf(Color(0xFFFFC727), Color(0xFFFFC727))
                 val cornerRadius = 16.dp
 
 
@@ -224,7 +243,7 @@ fun ResetEmailID() {
             focusedBorderColor = MaterialTheme.colorScheme.primary,
             unfocusedBorderColor = MaterialTheme.colorScheme.primary),
         singleLine = true,
-        modifier = Modifier.fillMaxWidth(0.8f),
+        modifier = Modifier.fillMaxWidth(0.9f),
         keyboardActions = KeyboardActions(
             onDone = {
                 keyboardController?.hide()

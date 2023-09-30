@@ -42,9 +42,15 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.rememberLottieComposition
 
 @Composable
 fun RegisterPage(navController: NavController) {
+
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.registerjson))
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -64,15 +70,15 @@ fun RegisterPage(navController: NavController) {
                 .align(Alignment.BottomCenter),
         ) {
 
-            Image(
-                painter = painterResource(id = R.drawable.logodrdevs),
-                contentDescription = null,
-                contentScale = ContentScale.Fit,
-                modifier = Modifier
-                    .height(180.dp)
-                    .fillMaxWidth(),
-
-                )
+//            Image(
+//                painter = painterResource(id = R.drawable.logodrdevs),
+//                contentDescription = null,
+//                contentScale = ContentScale.Fit,
+//                modifier = Modifier
+//                    .height(180.dp)
+//                    .fillMaxWidth(),
+//
+//                )
             Column(
                 modifier = Modifier.padding(16.dp)
                     .fillMaxWidth()
@@ -82,15 +88,29 @@ fun RegisterPage(navController: NavController) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
+                Image(
+                    painter = painterResource(id = R.drawable.logodrdevs),
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .height(70.dp)
+                        .fillMaxWidth(),
+
+                    )
+
+                LottieAnimation(
+                    modifier = Modifier.size(300.dp),
+                    composition = composition )
+
                 //.........................Spacer
-                Spacer(modifier = Modifier.height(30.dp))
+             //   Spacer(modifier = Modifier.height(10.dp))
 
                 //.........................Text: title
                 androidx.compose.material3.Text(
                     text = "Create An Account",
                     textAlign = TextAlign.Center,
                     modifier = Modifier
-                        .padding(top = 130.dp)
+                        .padding(top = 15.dp)
                         .fillMaxWidth(),
                     style = MaterialTheme.typography.headlineSmall,
                     color = MaterialTheme.colorScheme.primary,
@@ -111,7 +131,7 @@ fun RegisterPage(navController: NavController) {
                 RegisterPasswordConfirm()
 
 
-                val gradientColor = listOf(Color(0xFF484BF1), Color(0xFF673AB7))
+                val gradientColor = listOf(Color(0xFFFFC727), Color(0xFFFFC727))
                 val cornerRadius = 16.dp
 
 
@@ -250,7 +270,7 @@ fun RegisterName() {
             focusedBorderColor = MaterialTheme.colorScheme.primary,
             unfocusedBorderColor = MaterialTheme.colorScheme.primary),
         singleLine = true,
-        modifier = Modifier.fillMaxWidth(0.8f),
+        modifier = Modifier.fillMaxWidth(0.9f),
         keyboardActions = KeyboardActions(
             onDone = {
                 keyboardController?.hide()
@@ -287,7 +307,7 @@ fun RegisterPhone() {
             focusedBorderColor = MaterialTheme.colorScheme.primary,
             unfocusedBorderColor = MaterialTheme.colorScheme.primary),
         singleLine = true,
-        modifier = Modifier.fillMaxWidth(0.8f),
+        modifier = Modifier.fillMaxWidth(0.9f),
         keyboardActions = KeyboardActions(
             onDone = {
                 keyboardController?.hide()
@@ -324,7 +344,7 @@ fun RegisterEmail() {
             focusedBorderColor = MaterialTheme.colorScheme.primary,
             unfocusedBorderColor = MaterialTheme.colorScheme.primary),
         singleLine = true,
-        modifier = Modifier.fillMaxWidth(0.8f),
+        modifier = Modifier.fillMaxWidth(0.9f),
         keyboardActions = KeyboardActions(
             onDone = {
                 keyboardController?.hide()
@@ -370,7 +390,7 @@ fun RegisterPassword() {
                 Icon(imageVector = visibilityIcon, contentDescription = description)
             }
         },
-        modifier = Modifier.fillMaxWidth(0.8f),
+        modifier = Modifier.fillMaxWidth(0.9f),
         keyboardActions = KeyboardActions(
             onDone = {
                 keyboardController?.hide()
@@ -415,7 +435,7 @@ fun RegisterPasswordConfirm() {
                 Icon(imageVector = visibilityIcon, contentDescription = description)
             }
         },
-        modifier = Modifier.fillMaxWidth(0.8f),
+        modifier = Modifier.fillMaxWidth(0.9f),
         keyboardActions = KeyboardActions(
             onDone = {
                 keyboardController?.hide()

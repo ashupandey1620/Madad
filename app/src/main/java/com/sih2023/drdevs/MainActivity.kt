@@ -406,34 +406,28 @@ fun ComposeMapControllingCamera() {
 
 @Composable
 fun ComposeMapMapMarker() {
-    val college = LatLng(26.449347064508466, 80.19205235150231)
     val airforceHospital = LatLng(26.446797873756378, 80.37556576499573)
     val regencyHospital = LatLng(26.477747032569674, 80.34354328730275)
     val thanaKotwali = LatLng(26.474650246686668, 80.35161125843983)
     val fsKidwaiNagar = LatLng(26.442081636314562, 80.33221358039603)
     val home = LatLng(26.397074049510646, 80.31874031749705)
+    val college = LatLng(26.449347064508466, 80.19205235150231)
 
 
     val cameraPositionState: CameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(college, 11f)
+        position = CameraPosition.fromLatLngZoom(home, 14f)
     }
     Box(Modifier.fillMaxSize()) {
         GoogleMap(cameraPositionState = cameraPositionState){
             MapMarker(
-                position = college,
-                title = "Pranveer Singh Institute of Technology",
-                context = LocalContext.current,
-                iconResourceId = R.drawable.school
-            )
-            MapMarker(
-                position = airforceHospital,
-                title = "Airforce Hospital",
+                position = regencyHospital,
+                title = "Regency Hospital",
                 context = LocalContext.current,
                 iconResourceId = R.drawable.hospital
             )
             MapMarker(
-                position = regencyHospital,
-                title = "Regency Hospital",
+                position = airforceHospital,
+                title = "Airforce Hospital",
                 context = LocalContext.current,
                 iconResourceId = R.drawable.hospital
             )
@@ -454,6 +448,12 @@ fun ComposeMapMapMarker() {
                 title = "Home",
                 context = LocalContext.current,
                 iconResourceId = R.drawable.home
+            )
+            MapMarker(
+                position = college,
+                title = "Pranveer Singh Institute of Technology",
+                context = LocalContext.current,
+                iconResourceId = R.drawable.school
             )
         }
     }

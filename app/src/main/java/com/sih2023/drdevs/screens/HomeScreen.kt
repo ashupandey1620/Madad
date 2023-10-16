@@ -18,7 +18,7 @@ fun HomeScreen(navController: NavController) {
 
     Column(
         modifier = Modifier.fillMaxSize()
-            .padding(20.dp)
+            .padding(bottom = 55.dp)
             .background(Color.LightGray)
     ) {
         ComposeMapMapMarker()

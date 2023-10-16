@@ -114,7 +114,9 @@ class MainActivity : ComponentActivity() {
                     //Center point
                    // ComposeMapCenterPointMapMarker()
 
-                    LoginApplication()
+                   LoginApplication()
+
+
                 }
             }
         }
@@ -617,3 +619,9 @@ fun LoginApplication(){
     })
 }
 
+
+/**
+ * Color
+ * #df4600 dark
+ *
+ */

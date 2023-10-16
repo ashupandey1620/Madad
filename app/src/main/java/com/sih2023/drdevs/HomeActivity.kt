@@ -47,10 +47,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.sih2023.drdevs.screens.HomeScreen
+import com.sih2023.drdevs.screens.ProfileScreen
+import com.sih2023.drdevs.screens.ReportScreen
 import com.sih2023.drdevs.ui.theme.DRDevsTheme
 import kotlinx.coroutines.launch
 
 data class BottomNavigationItem(
+    val route: String ,
     val title: String ,
     val selectedIcon : ImageVector ,
     val unselectedIcon :ImageVector ,
@@ -64,22 +72,26 @@ class HomeActivity : ComponentActivity() {
 
 
         setContent {
+            val navController = rememberNavController()
             DRDevsTheme {
                 val items = listOf(
                     BottomNavigationItem(
+                        route = "home",
                         title = "Home",
                         selectedIcon = Icons.Filled.Home,
                         unselectedIcon = Icons.Outlined.Home,
                         hasNews = false,
                     ),
                     BottomNavigationItem(
-                        title = "Email",
+                        route = "email",
+                        title ="Email",
                         selectedIcon = Icons.Filled.Email,
                         unselectedIcon = Icons.Outlined.Email,
                         hasNews = false,
                         badgeCount = 38,
                     ),
                     BottomNavigationItem(
+                        route = "settings",
                         title = "Settings",
                         selectedIcon = Icons.Filled.Settings,
                         unselectedIcon = Icons.Outlined.Settings,
@@ -101,7 +113,9 @@ class HomeActivity : ComponentActivity() {
                                         selected = selectedItemIndex == index ,
                                         onClick = {
                                                   selectedItemIndex = index
-                                            //navcontroller
+
+
+
                                         } ,
                                         label = {Text(text = item.title)},
                                         icon = {
@@ -128,7 +142,7 @@ class HomeActivity : ComponentActivity() {
                             }
                         }
                     ) {
-
+                        MainPageNavigation(navController = navController)
                     }
                 }
             }
@@ -152,47 +166,15 @@ fun GreetingPreview() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun BottomNavigation(){
-    val drawerState = rememberDrawerState(DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
-// icons to mimic drawer destinations
-    val items = listOf(Icons.Default.Favorite, Icons.Default.Face, Icons.Default.Email)
-    val selectedItem = remember { mutableStateOf(items[0]) }
-    ModalNavigationDrawer(
-        drawerState = drawerState,
-        drawerContent = {
-            ModalDrawerSheet {
-                Spacer(Modifier.height(12.dp))
-                items.forEach { item ->
-                    NavigationDrawerItem(
-                        icon = { Icon(item, contentDescription = null) },
-                        label = { Text(item.name) },
-                        selected = item == selectedItem.value,
-                        onClick = {
-                            scope.launch { drawerState.close() }
-                            selectedItem.value = item
-                        },
-                        modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
-                    )
-                }
-            }
-        },
-        content = {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(text = if (drawerState.isClosed) ">>> Swipe >>>" else "<<< Swipe <<<")
-                Spacer(Modifier.height(20.dp))
-                Button(onClick = { scope.launch { drawerState.open() } }) {
-                    Text("Click to open")
-                }
-            }
-        }
-    )
-}
 
+@Composable
+fun MainPageNavigation(navController: NavController){
+    val navController = rememberNavController()
+
+    NavHost(navController = navController, startDestination = "home", builder = {
+        composable("home", content = { HomeScreen(navController = navController) })
+        composable("email", content = { ProfileScreen(navController = navController) })
+        composable("settings", content = { ReportScreen(navController = navController) })
+    })
+}
+//                                          navController.navigate(item.route)

@@ -413,12 +413,13 @@ fun ComposeMapMapMarker() {
     val home = LatLng(26.397074049510646, 80.31874031749705)
     val college = LatLng(26.449347064508466, 80.19205235150231)
 
+    val properties by remember { mutableStateOf(MapProperties(mapType = MapType.TERRAIN)) }
 
     val cameraPositionState: CameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(home, 14f)
     }
     Box(Modifier.fillMaxSize()) {
-        GoogleMap(cameraPositionState = cameraPositionState){
+        GoogleMap(cameraPositionState = cameraPositionState, properties = properties){
             MapMarker(
                 position = regencyHospital,
                 title = "Regency Hospital",
